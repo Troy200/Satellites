@@ -12,6 +12,12 @@ start=time()
 total=0
 #tns=
 
+game_over= False
+
+def time_up():
+    global game_over
+    game_over=True
+
 #creation of sats
 for i in range (10):
     satellite=Actor("satellite")
@@ -59,12 +65,21 @@ def draw():
         
         screen.draw.text(str(round(total,2)),(50,550))  
     else:
-        screen.draw.text(str(round(total,2)),(50,550))   
+        screen.draw.text(str(round(total,2)),(50,550)) 
+
+
+    if game_over==True:
+        screen.fill("red")
+        screen.draw.text("Game Over",(300,250))
+        
+    
+
 
 
 def update():
     pass
 
+clock.schedule(time_up, 20.0)
 
 pgzrun.go()
 
